@@ -17,6 +17,8 @@ public class MangledName extends AppCompatActivity {
     private String mFirstName;
     private final String[] lastNames = { " Magnificent", " The Terrible", " The Smelly", " Superb", " The Great"};
 
+    private String savedName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +33,13 @@ public class MangledName extends AppCompatActivity {
         }
 
         if (savedInstanceState != null) {
-            mTextView.setText(savedInstanceState.getString("saved_name"));
-        }
-        else {
+            savedName = savedInstanceState.getString("saved_name");
+        } else {
             int index = new Random().nextInt(5) % 5;
             String lastName = String.valueOf(lastNames[index]);
-            mTextView.setText(mFirstName + lastName);
+            savedName = mFirstName + lastName;
         }
+        mTextView.setText(savedName);
 
 
         mReset = (Button) findViewById(R.id.reset_button);
@@ -55,7 +57,8 @@ public class MangledName extends AppCompatActivity {
                 String lastName = String.valueOf(lastNames[index]);
 
                 mTextView = (TextView) findViewById(R.id.new_name);
-                mTextView.setText(mFirstName + lastName);
+                savedName = mFirstName + lastName;
+                mTextView.setText(savedName);
             }
         });
     }
@@ -63,7 +66,9 @@ public class MangledName extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putString("saved_name", mTextView.getText().toString());
+        //savedInstanceState.putString("saved_name", mTextView.getText().toString());
+        savedInstanceState.putString("saved_name", savedName);
+
     }
 
 }
