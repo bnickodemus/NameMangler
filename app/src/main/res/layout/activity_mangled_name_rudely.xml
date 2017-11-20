@@ -25,14 +25,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/reset_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reset"
-            android:layout_marginRight="24dp"/>
+            android:layout_marginRight="24dp"
+            android:text="@string/reset"/>
 
         <Button
             android:id="@+id/re_mangle_button"
@@ -40,12 +40,16 @@
             android:layout_height="wrap_content"
             android:text="@string/re_mangle"/>
 
-        <ImageView
-            android:id="@+id/cat_pic"
-            android:src="@drawable/cat"
-            android:layout_width="240dp"
-            android:layout_height="360dp" />
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cat_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cat"
+        android:maxWidth="240dp"
+        android:maxHeight="360dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
 
 </LinearLayout>

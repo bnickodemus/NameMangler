@@ -9,8 +9,12 @@
     <ImageView
         android:id="@+id/dog_pic"
         android:src="@drawable/dog"
-        android:layout_width="240dp"
-        android:layout_height="360dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="240dp"
+        android:maxHeight="120dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/new_name"
