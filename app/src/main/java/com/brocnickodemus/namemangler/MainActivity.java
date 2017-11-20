@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mMangleButton;
+    private Button mMangleNicelyButton;
+    private Button mMangleRudelyButton;
     private EditText mEditText;
 
     public static final String EXTRA_MESSAGE = "com.brocnickodemus.MESSAGE";
@@ -23,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         mEditText = (EditText) findViewById(R.id.edit_text);
 
-        mMangleButton = (Button) findViewById(R.id.mangle_button);
-        mMangleButton.setOnClickListener(new View.OnClickListener(){
+        mMangleNicelyButton = (Button) findViewById(R.id.mangle_nicely_button);
+        mMangleNicelyButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 if (TextUtils.isEmpty(mEditText.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "you must enter a name",
@@ -33,11 +34,32 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(MainActivity.this, MangledName.class);
                     String name = mEditText.getText().toString();
+
+                    boolean isNice = true;
                     intent.putExtra("name", name);
+                    intent.putExtra("nice", isNice);
                     startActivity(intent);
                 }
             }
         });
 
+        mMangleRudelyButton = (Button) findViewById(R.id.mangle_rudely_button);
+        mMangleRudelyButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(mEditText.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "you must enter a name",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, MangledName.class);
+                    String name = mEditText.getText().toString();
+
+                    boolean isNice = false;
+                    intent.putExtra("name", name);
+                    intent.putExtra("nice", isNice);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

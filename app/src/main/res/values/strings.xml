@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Name Mangler</string>
     <string name="first_name">First Name:</string>
-    <string name="mangle">Mangle!</string>
+    <string name="mangle_nicely">Mangle Nicely</string>
+    <string name="mangle_rudely">Mangle Rudely</string>
     <string name="title_activity_mangled_name">MangledName</string>
     <string name="re_mangle">Re-mangle!</string>
     <string name="reset">Reset</string>

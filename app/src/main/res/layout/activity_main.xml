@@ -36,11 +36,16 @@
             android:inputType="text"/>
 
         <Button
-            android:id="@+id/mangle_button"
+            android:id="@+id/mangle_nicely_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mangle"/>
+            android:text="@string/mangle_nicely"/>
 
+        <Button
+            android:id="@+id/mangle_rudely_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mangle_rudely"/>
     </LinearLayout>
 
 </LinearLayout>

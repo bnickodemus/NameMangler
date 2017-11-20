@@ -1,11 +1,12 @@
 package com.brocnickodemus.namemangler;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -15,7 +16,8 @@ public class MangledName extends AppCompatActivity {
     private Button mReset;
     private Button mReMangle;
     private String mFirstName;
-    private final String[] lastNames = { " Magnificent", " The Terrible", " The Smelly", " Superb", " The Great"};
+    private final String[] niceLastNames = { "Magnificent", "The Great", "The Awesome", "Superb", "The Fabulous" };
+    private final String[] rudeLastNames = { "The Terrible", "The Faulty", "The Mad", "The Poor", "Faint of Heart" };
 
     private String savedName;
 
@@ -28,6 +30,11 @@ public class MangledName extends AppCompatActivity {
 
         Intent intent = getIntent();
         String firstName = (getIntent()).getStringExtra("name");
+        boolean isNice = (getIntent()).getExtras().getBoolean("nice");
+
+        Toast.makeText(getApplicationContext(), "isNice" + (String.valueOf(isNice)),
+                Toast.LENGTH_LONG).show();
+
         if (firstName != null) {
             mFirstName = firstName;
         }
@@ -36,8 +43,8 @@ public class MangledName extends AppCompatActivity {
             savedName = savedInstanceState.getString("saved_name");
         } else {
             int index = new Random().nextInt(5) % 5;
-            String lastName = String.valueOf(lastNames[index]);
-            savedName = mFirstName + lastName;
+            String lastName = String.valueOf(niceLastNames[index]);
+            savedName = mFirstName + " " + lastName;
         }
         mTextView.setText(savedName);
 
@@ -54,7 +61,7 @@ public class MangledName extends AppCompatActivity {
         mReMangle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int index = new Random().nextInt(5) % 5;
-                String lastName = String.valueOf(lastNames[index]);
+                String lastName = String.valueOf(niceLastNames[index]);
 
                 mTextView = (TextView) findViewById(R.id.new_name);
                 savedName = mFirstName + lastName;
