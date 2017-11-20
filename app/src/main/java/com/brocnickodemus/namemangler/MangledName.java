@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -24,16 +23,17 @@ public class MangledName extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mangled_name);
-
-        mTextView = (TextView) findViewById(R.id.new_name);
 
         Intent intent = getIntent();
         String firstName = (getIntent()).getStringExtra("name");
-        boolean isNice = (getIntent()).getExtras().getBoolean("nice");
+        final boolean isNice = (getIntent()).getExtras().getBoolean("nice");
 
-        Toast.makeText(getApplicationContext(), "isNice" + (String.valueOf(isNice)),
-                Toast.LENGTH_LONG).show();
+        if (isNice) {
+            setContentView(R.layout.activity_mangled_name_nicely);
+        } else {
+            setContentView(R.layout.activity_mangled_name_rudely);
+        }
+        mTextView = (TextView) findViewById(R.id.new_name);
 
         if (firstName != null) {
             mFirstName = firstName;
@@ -43,11 +43,16 @@ public class MangledName extends AppCompatActivity {
             savedName = savedInstanceState.getString("saved_name");
         } else {
             int index = new Random().nextInt(5) % 5;
-            String lastName = String.valueOf(niceLastNames[index]);
-            savedName = mFirstName + " " + lastName;
+            if (isNice) {
+                String lastName = String.valueOf(niceLastNames[index]);
+                savedName = mFirstName + " " + lastName;
+            }
+            else {
+                String lastName = String.valueOf(rudeLastNames[index]);
+                savedName = mFirstName + " " + lastName;
+            }
         }
         mTextView.setText(savedName);
-
 
         mReset = (Button) findViewById(R.id.reset_button);
         mReset.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +66,17 @@ public class MangledName extends AppCompatActivity {
         mReMangle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int index = new Random().nextInt(5) % 5;
-                String lastName = String.valueOf(niceLastNames[index]);
-
-                mTextView = (TextView) findViewById(R.id.new_name);
-                savedName = mFirstName + lastName;
-                mTextView.setText(savedName);
+                if (isNice) {
+                    String lastName = String.valueOf(niceLastNames[index]);
+                    mTextView = (TextView) findViewById(R.id.new_name);
+                    savedName = mFirstName + lastName;
+                    mTextView.setText(savedName);
+                } else {
+                    String lastName = String.valueOf(rudeLastNames[index]);
+                    mTextView = (TextView) findViewById(R.id.new_name);
+                    savedName = mFirstName + lastName;
+                    mTextView.setText(savedName);
+                }
             }
         });
     }

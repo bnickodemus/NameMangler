@@ -7,6 +7,11 @@
     android:orientation="vertical" >
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RUDE"/>
+
+    <TextView
         android:id="@+id/new_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/re_mangle"/>
+
+        <ImageView
+            android:id="@+id/cat_pic"
+            android:src="@drawable/cat"
+            android:layout_width="240dp"
+            android:layout_height="360dp" />
 
     </LinearLayout>
 
